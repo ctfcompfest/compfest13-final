@@ -1,0 +1,10 @@
+b *giveBonus+211
+b *viewEmployee+168
+b *viewEmployee+205
+
+b *thankYou+145
+p *(FILE*)($rbp-0x108)
+
+b *fwrite+162
+p *(FILE*)($r12)
+

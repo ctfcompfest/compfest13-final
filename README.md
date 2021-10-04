@@ -5,9 +5,9 @@ This repository contains the problem set of final contest from CTF COMPFEST 13.
 ## Table of Contents
 | Problem Title | Author | Category |
 | --- | ----------- | ----------- |
-| Bonus | prajnapras19 | Binary Exploitation |
-| Bookshelf | prajnapras19 | Binary Exploitation |
-| Schedule | prajnapras19 | Binary Exploitation |
+| [Bonus](binary-exploitation/bonus) | prajnapras19 | Binary Exploitation |
+| [Bookshelf](binary-exploitation/bookshelf) | prajnapras19 | Binary Exploitation |
+| [Schedule](binary-exploitation/schedule) | prajnapras19 | Binary Exploitation |
 | A Round | prajnapras19 | Cryptography |
 | Freshly Random | sl0ck | Cryptography |
 | Private | prajnapras19 | Cryptography |
@@ -39,7 +39,7 @@ This repository contains the problem set of final contest from CTF COMPFEST 13.
 ```
 
 ## Contributors
-We would like to thank you, Universitas Indonesia, all the COMPFEST committees, and the problem setter for the amazing challenge:
+We would like to thank you, Universitas Indonesia, all the COMPFEST committees, and the problem setter for the amazing challenges:
 * [Bonceng](https://github.com/faishol01)
 * [houseoforion](https://github.com/haikalrmn)
 * [Hori75](https://github.com/Hori75)
