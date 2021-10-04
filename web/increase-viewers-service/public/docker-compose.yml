@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build: ./src/app
+    restart: always
+    # needed for iptables
+    privileged: true
+    depends_on:
+      - cache
+    links:
+      - "cache:cache"
+    ports:
+      - "80:80"
+    environment: 
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+  cache:
+    build: ./src/cache
+    restart: always
+    # needed for iptables
+    privileged: true
+    # ports:
+    #   - "6379:6379"

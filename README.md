@@ -18,9 +18,9 @@ This repository contains the problem set of final contest from CTF COMPFEST 13.
 | [LZ21](reverse-engineering/lz21) | sl0ck | Reverse Engineering |
 | [Takeshi Castle](reverse-engineering/takeshi-castle) | Bonceng | Reverse Engineering |
 | [WASM ROLL](reverse-engineering/wasm-roll) | xMaximusKl | Reverse Engineering |
-| Crypto Tracker | Bonceng | Web |
-| Increase Viewers Service | Bonceng | Web |
-| Just a Simple Login Screen | Hori75 | Web |
+| [Crypto Tracker](web/crypto-tracker) | Bonceng | Web |
+| [Increase Viewers Service](web/increase-viewers-service) | Bonceng | Web |
+| [Just a Simple Login Screen](web/just-a-simple-login-screen) | Hori75 | Web |
 
 
 ## Folder Structure

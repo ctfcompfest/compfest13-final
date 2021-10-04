@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Crypto Tracker</title>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <style>
+        #cryptoboard p {
+            max-height: 200px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container px-4 py-5" id="featured-3">
+        <div class="pb-2 bprder-bottom text-center">
+            <h2>Crypto Tracker</h2>
+            <p>(Update automatically every 10 seconds)</p>
+        </div>
+        <div class="py-3 d-flex">
+            <form id="form-options" class="d-flex me-auto">
+                <label class="me-2 h5">Image:</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="image" value="true" checked>
+                </div>
+                <label class="ms-3 me-2 h5">Detail:</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="detail" value="true">
+                </div>
+            </form>
+            <form id="form-crypto" class="ms-auto">
+                <div class="btn-group dropdown">
+                    <span class="btn btn-primary">Cryptocurrency</span>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"  data-bs-reference="parent" data-bs-auto-close="outside">
+                    </button>
+                    <ul id="cryptomenu" class="dropdown-menu"></ul>
+                </div>
+            </form>
+        </div>
+        <div id="cryptoboard" class="row g-4 py-3"></div>
+    </div>
+    
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script>
+        function formatRupiah(s) {
+            s = s.toString().split('.')
+            let bil = s[0]
+            let frac = ""
+            if (s.length > 1) frac += "," + s[1]
+            let ret = ""
+            for(let i = bil.length - 1; i >= 0; i -= 3) {
+                let str = Math.max(i - 2, 0)
+                ret = bil.substring(str, str + 3) + ret
+                if (str != 0) ret = "." + ret
+            }
+            return "Rp " + ret + frac
+        }
+
+        function parseElement(elm) {
+            let img = ""
+            if (elm.image) {
+                img = `<img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="65" height="65" src="${elm.image.large}"></img>`
+            }
+
+            let desc = ""
+            if (elm.description) {
+                desc = elm.description.en
+                desc = `<p>${desc}</p>`
+            }
+
+            let html = `<div class="col-lg-4">
+                <div class="p-4 bg-body rounded shadow-sm d-flex">
+                    ${img}
+                    <div>
+                        <h6 class="mb-0 h5">${elm.name}</h6>
+                        <h6 class="mb-0 h3 fw-bold">${formatRupiah(elm.price)}</h6>
+                        ${desc}
+                    </div>
+                </div>
+            </div>`
+            $('#cryptoboard').append(html)
+        }
+
+        function updateData() {
+            let formOpt = $('#form-options').serializeArray()
+            let formCrypto = $('#form-crypto').serializeArray()
+            let body = {'cryptos': [], 'options': {}}
+
+            for (let c of formCrypto) {
+                body['cryptos'].push(c.name)
+            }
+            for (let c of formOpt) {
+                body['options'][c.name] = true
+            }
+            $.ajax({
+                method: 'POST',
+                url: '/crypto',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(body),
+                success: (data) => {
+                    data = data.data
+                    $('#cryptoboard').empty()
+                    data.forEach(parseElement)  
+                },
+                error: (jqxhr) => {
+                    console.log(jqxhr)
+                    alert('Error')
+                }
+            })
+        }
+        
+        $(() => {
+            $(".form-check-input").click(updateData)
+            $.getJSON('/crypto', (data) => {
+                let crypto = data.data
+                let cnt = 0
+                for (let c of Object.keys(crypto)) {
+                    let html = `<li>
+                            <input id="crypto-${cnt}" class="ms-3 me-1 cryptoitem" type="checkbox" name="${c}" value="true">
+                            <label for="crypto-${cnt}">${c.charAt(0).toUpperCase()}${c.substr(1)}</label>
+                        </li>`
+                    $('#cryptomenu').append(html)
+                    cnt++
+                }
+                $('.cryptoitem').click(updateData)
+            })
+            setInterval(updateData, 10000)
+        })
+    </script>
+</body>
+</html>
