@@ -1,0 +1,187 @@
+bool isFinishedGrid(int r, int c) {
+	return r == 18 && c == -2;
+}
+
+bool isInArena(int r, int c) {
+	return (0 <= r && r < ROW) && (0 <= c && c < COL);
+}
+
+void drawRow0(int r, int c) {
+	if (c % 12 == 2 || c % 12 == 4 || c % 12 == 6)
+		arena[r][c] = 'O';
+	else if (c % 12 == 10)
+		arena[r][c] = '?';
+	else arena[r][c] = ' ';
+}
+
+void drawRow1(int r, int c) {
+	if (c % 12 == 1 || c % 12 == 7)
+		arena[r][c] = 'O';
+	else arena[r][c] = ' ';
+}
+
+void drawRow2(int r, int c) {
+	if (c % 12 == 0 || c % 12 == 8 || c % 12 == 10)
+		arena[r][c] = 'O';
+	else if (c % 12 == 4)
+		arena[r][c] = '?';
+	else arena[r][c] = ' ';
+}
+
+void initGame(int r, int c) {
+	for (int i = 0; i < r; i+=4) {
+		for (int j = 0; j < c; j++) {
+			drawRow2(i, j);
+			drawRow1(i+1, j);
+			drawRow0(i+2, j);
+			drawRow1(i+3, j);
+            
+            if ((i == 0 || i == r-1) && arena[i][j] == '?')
+                arena[i][j] = ' '; 
+		}
+	}
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            arena[j][i] = ' ';
+            arena[j][c - i - 1] = ' ';
+            arena[r - j - 1][i] = ' ';
+            arena[r - j - 1][c - i - 1] = ' ';
+        }
+    }
+	
+	posCol = COL - 6;
+	posRow = 0;
+}
+
+void initcolor() {
+	if(has_colors() == FALSE) {
+		endwin();
+		printf("Your terminal does not support color\n");
+		exit(1);
+	}
+
+	start_color();
+	init_pair(1, COLOR_BLUE, COLOR_BLACK);
+	init_pair(2, COLOR_RED, COLOR_BLACK);
+}
+
+bool isValidMove(int tr, int tc) {
+	return isFinishedGrid(tr, tc) || (isInArena(tr, tc) && arena[tr][tc] == '?');
+}
+
+void displayMove(int pr, int pc) {
+	attron(COLOR_PAIR(1));
+	for (int i = 0; i < ROW; i++)
+		for (int j = 0; j < COL; j++) {
+			mvaddch(OFFROW_ARENA + i, OFFCOL_ARENA + j, arena[i][j]);	
+		}
+	attroff(COLOR_PAIR(1));
+	
+	for (int i = 0; i < 6; i++) {
+		int tr = pr + dR[i];
+		int tc = pc + dC[i];
+
+		if (isValidMove(tr, tc)) {
+			mvaddch(OFFROW_ARENA + tr, OFFCOL_ARENA + tc, '1' + i);
+		}
+	}
+
+	mvaddch(OFFROW_ARENA + pr, OFFCOL_ARENA + pc, ' ');
+	move(OFFROW_ARENA + pr, OFFCOL_ARENA + pc);
+    refresh();
+}
+
+void showclosing() {
+	char msg[250] = "";
+	clear();
+
+	if (step != FLAG_LEN + 1) {
+		strcat(msg, "Sorry warrior, you cannot advance to the next round."); 
+	} else {
+		strcat(msg, "Congratulations, keep your spirit to conquer the castle!\n");
+	
+		char tmp[step];
+		for (int i = 1; i <= step; i++) {
+			tmp[i - 1] = prize[i] - prize[i - 1];
+		}
+		strcat(msg, "Your prize: ");
+		strcat(msg, tmp);
+
+	}
+
+	mvprintw(0, 0, msg);
+	getch();
+}
+
+void meetdemon() {
+	clear();
+	mvprintw(0, 0, "Oops, you met the demon~");
+	refresh();
+
+	getch();
+	endwin();
+	exit(0);
+}
+
+int calcidx(int r, int c) {
+	if (isFinishedGrid(r, c)) {
+		return NUMGRID - 1;
+	}
+	int ret = c / 12 + 10 * ((r % 4) / 2) + (r - 1) / 4 * 19;
+	return ret;
+}
+
+int getrealinsdec_idx(int a) {
+	if (insdec_idx[a] < 0) return insdec_idx[a];
+	return insdec_idx[a] = getrealinsdec_idx(insdec_idx[a]);
+}
+
+void movePlayer(int m) {
+	if (m < '1' || '6' < m) return;
+
+	m -= '1';
+	int tC = posCol + dC[m];
+	int tR = posRow + dR[m];
+	if (!isValidMove(tR, tC)) return;
+	arena[tR - dR[m] / 2][tC - dC[m] / 2] = ' ';
+	
+	int grididx = calcidx(tR, tC);
+	int b_idx = (getrealinsdec_idx(grididx) * -1) - 1;
+
+	char tmp[300];
+	memcpy(tmp, insdec[b_idx], sizeof(insdec[b_idx]));
+	int (*f) (int, char[][300]) = (void*)tmp;
+
+	int stt = f(grididx, insgrid);
+	if (stt < 0) meetdemon();
+	else prize[step] = stt;
+	
+	posCol = tC;
+	posRow = tR;
+} 
+
+int main() {
+	if (ptrace(PTRACE_TRACEME, 0, 1, 0) < 0) {
+		printf("HAHAHA...\n");
+		while(true){}
+		return 1;
+	}
+
+	initGame(ROW, COL);
+	initscr();
+	noecho();
+	initcolor();
+
+	mvprintw(1, OFFCOL_ARENA, "[ GUIDE ] To move, choose the grid number using your keyboard.");
+
+    while (!isFinishedGrid(posRow, posCol) && step <= FLAG_LEN) {
+		displayMove(posRow, posCol);
+		movePlayer(getch());
+		step++;
+	}
+
+	showclosing();
+
+    endwin();
+    return 0;
+}

@@ -11,13 +11,13 @@ This repository contains the problem set of final contest from CTF COMPFEST 13.
 | A Round | prajnapras19 | Cryptography |
 | Freshly Random | sl0ck | Cryptography |
 | Private | prajnapras19 | Cryptography |
-| hmm | xMaximusKl | Forensic |
-| Not So Hidden | houseoforion | Forensic |
-| QuiccReader | sl0ck | Miscellaneous |
-| WaifuDroid Returns | sl0ck | Miscellaneous |
-| LZ21 | sl0ck | Reverse Engineering |
-| Takeshi Castle | Bonceng | Reverse Engineering |
-| WASM ROLL | xMaximusKl | Reverse Engineering |
+| [hmm](forensic/hmm) | xMaximusKl | Forensic |
+| [Not So Hidden](forensic/not-so-hidden) | houseoforion | Forensic |
+| [QuiccReader](miscellaneous/quiccreader) | sl0ck | Miscellaneous |
+| [WaifuDroid Returns](miscellaneous/waifudroid-returns) | sl0ck | Miscellaneous |
+| [LZ21](reverse-engineering/lz21) | sl0ck | Reverse Engineering |
+| [Takeshi Castle](reverse-engineering/takeshi-castle) | Bonceng | Reverse Engineering |
+| [WASM ROLL](reverse-engineering/wasm-roll) | xMaximusKl | Reverse Engineering |
 | Crypto Tracker | Bonceng | Web |
 | Increase Viewers Service | Bonceng | Web |
 | Just a Simple Login Screen | Hori75 | Web |
@@ -31,15 +31,15 @@ This repository contains the problem set of final contest from CTF COMPFEST 13.
         ├─ public/
         │   └─ (files that are given to participants)
         ├─ src/
-        │   └─ (source if there's any)
+        │   └─ (source for the problem service or to generate attachment)
         ├─ writeup/
-        │   └─ (solution for the problem, if there's any)
-        ├─ docker-compose.yml (if there's any)
+        │   └─ (solution for the problem)
+        ├─ docker-compose.yml (for problem services)
         └─ README.md
 ```
 
 ## Contributors
-We would like to thank you, Universitas Indonesia, all the COMPFEST committees, the problem setter for the amazing challenge:
+We would like to thank you, Universitas Indonesia, all the COMPFEST committees, and the problem setter for the amazing challenge:
 * [Bonceng](https://github.com/faishol01)
 * [houseoforion](https://github.com/haikalrmn)
 * [Hori75](https://github.com/Hori75)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>WASM ROLL</title>
+        <script>
+            var Module;
+        </script>
+    </head>
+<body>
+    <div align="center">
+        <h3>WASM ROLL</h3>
+        <div>
+            <p id="output">Start to roll and get reward!</p>
+            <button onclick="Module.roll()">ROLL</button>
+        </div>
+    </div>
+    <script>
+        var huha = (val) => {
+            document.getElementById("output").innerHTML = val
+        }
+        Module = {
+            print: huha,
+            printErr: (val) => console.error(val)
+        };
+    </script>
+    {{{ SCRIPT }}}
+</body>
+</html>

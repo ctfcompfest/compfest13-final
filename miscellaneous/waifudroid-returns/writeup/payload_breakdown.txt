@@ -1,0 +1,21 @@
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))].concat( // ) // j
+
+(typeof(x))[((typeof(x)).search(typeof(x)))], // u	
+(typeof(typeof(x)))[((typeof(x)).search(typeof(x)))], // s
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))] //t
+
+(typeof([]))[((typeof(x)).search(typeof(x)))], // o
+(typeof((typeof(x)).length))[((typeof(x)).search(typeof(x)))], // n
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // e
+
+(typeof((typeof(x)).length))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // m
+(typeof([]))[((typeof(x)).search(typeof(x)))], //o
+(typeof(typeof(x)))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // r
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // e
+
+(typeof(typeof(x)))[((typeof(x)).search(typeof(x)))] // s
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // e
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))] // c
+(typeof(typeof(x)))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // r
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))], // e
+(typeof([]))[-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))-((typeof(x)).search(typeof([])))] // t

@@ -1,0 +1,20 @@
+#include <ncurses.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/ptrace.h>
+#include <assert.h>
+
+#define OFFCOL_ARENA 5
+#define OFFROW_ARENA 3
+#define COL 118
+#define ROW 33
+#define FLAG_LEN 36
+#define NUMGRID 153
+
+char arena[ROW][COL + 4];
+int posRow, posCol;
+int dC[] = {-6, 0, +6, +6, 0, -6};
+int dR[] = {-2, -4, -2, +2, +4, +2};
+int step = 0;
+int prize[FLAG_LEN + 1];

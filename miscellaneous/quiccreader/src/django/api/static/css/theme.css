@@ -1,0 +1,78 @@
+@font-face {
+	font-family: '04b_30';
+	src: local('04b_30'),
+		 url('/static/fonts/04B_30__.TTF') format("truetype");
+}
+
+body {
+	background: rgb(65,43,189);
+	background: linear-gradient(0deg, rgba(65,43,189,1) 0%, rgba(46,24,166,1) 23%, rgba(37,24,107,1) 100%);
+	background-attachment: fixed;
+}
+
+.f1 {
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 0;
+	top: 80px;
+}
+
+.t1 {
+	position: relative;
+	color: #DE3163;
+	font-family: '04b_30';
+	font-size: 75px;
+	text-align: center;
+	text-shadow: 4px 4px #0F0933;
+	top: 100px;
+}
+
+.i1 {
+	border-radius: 10px 0 0 10px;
+	border: 2px solid #DE3163;
+	border-right: 0;
+	background: #160D4A;
+	caret-color: #DE3163;
+	font-family: 'Courier New';
+	font-size: 18px;
+	color: #DE3163;
+	height: 35px;
+	width: 320px;
+}
+
+.i1:focus {
+	outline: none;
+	box-shadow: 0px 0px;
+}
+
+.i1::placeholder {
+	font-size: 18px;
+	font-style: italic;
+	color: #483D8A;
+}
+
+.i2 {
+	height: 41px;
+	width: 41px;
+	border-radius: 0 10px 10px 0;
+	background: url('/static/images/magnifier.png') center no-repeat, #DE3163; 
+	background-size: 75% 75%;
+	border: 2px solid #DE3163;
+	vertical-align: bottom;
+	cursor: pointer;
+}
+
+.i2:hover {
+	background: url('/static/images/magnifier.png') center no-repeat, white;
+	background-size: 75% 75%;
+}
+
+.p1 {
+	position: relative;
+	text-align: center;
+	font-family: 'Courier New';
+	font-size: 18px;
+	color: #DE3163;
+	top: 90px;
+}

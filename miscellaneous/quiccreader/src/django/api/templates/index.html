@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QuiccReader</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
+</head>
+
+<body>
+	<p class="t1">QuiccReader</p>
+	<form class="f1" action="" method="post">
+		{% csrf_token %}
+		<input class="i1" name="filename" id="filename" type="text" placeholder="Enter filename...">
+		<input class="i2" type="submit" value="">
+	</form>
+	<p class="p1">{{ ret }}</p>
+</body>
+
+</html>
