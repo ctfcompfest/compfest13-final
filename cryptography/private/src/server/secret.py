@@ -1,0 +1,1 @@
+FLAG = b'COMPFEST13{C0mm0N_4nD___5m4LL____Pr1V4t3_k3y___6055d2d3e5}'

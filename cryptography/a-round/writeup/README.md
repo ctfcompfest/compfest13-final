@@ -1,0 +1,2 @@
+# Writeup A Round
+Attack terhadap one round AES dengan memiliki dua known-plaintext. Attack dijelaskan pada paper [C. Bouillaguet, P. Derbez, O. Dunkelman, P. Fouque, N. Keller and V. Rijmen, "Low-Data Complexity Attacks on AES," in IEEE Transactions on Information Theory, vol. 58, no. 11, pp. 7002-7017, Nov. 2012, doi: 10.1109/TIT.2012.2207880.](https://ieeexplore.ieee.org/document/6256730).

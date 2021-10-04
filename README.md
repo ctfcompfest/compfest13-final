@@ -8,9 +8,9 @@ This repository contains the problem set of final contest from CTF COMPFEST 13.
 | [Bonus](binary-exploitation/bonus) | prajnapras19 | Binary Exploitation |
 | [Bookshelf](binary-exploitation/bookshelf) | prajnapras19 | Binary Exploitation |
 | [Schedule](binary-exploitation/schedule) | prajnapras19 | Binary Exploitation |
-| A Round | prajnapras19 | Cryptography |
-| Freshly Random | sl0ck | Cryptography |
-| Private | prajnapras19 | Cryptography |
+| [A Round](cryptography/a-round) | prajnapras19 | Cryptography |
+| [Freshly Random](cryptography/freshly-random) | sl0ck | Cryptography |
+| [Private](cryptography/private) | prajnapras19 | Cryptography |
 | [hmm](forensic/hmm) | xMaximusKl | Forensic |
 | [Not So Hidden](forensic/not-so-hidden) | houseoforion | Forensic |
 | [QuiccReader](miscellaneous/quiccreader) | sl0ck | Miscellaneous |
